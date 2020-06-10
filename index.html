@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <style>
+    .checked {
+      text-decoration: line-through;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app" class="container mt-5">
+    <!-- title -->
+    <h1 class="mb-4">Todo App</h1>
+    <!-- form -->
+    <form v-on:submit.prevent>
+      <div class="form-group">
+        <label for="add-task">Add Task</label>
+        <input v-model="newItem" type="text" class="form-control form-control-lg"  placeholder="study Vue">
+
+      </div>
+      <div class="text-center">
+        <button v-on:click="addList" class="px-5 mb-4 btn btn-outline-secondary">Add</button>
+      </div>
+    </form>
+    <!-- add list -->
+    <ul class="list-group list-group-flush">
+      <li v-for="(todoList, index) in todoLists" class="list-group-item">
+        <input v-model="todoList.isChecked" type="checkbox" class="mr-3">
+        <span v-bind:class="{ checked: todoList.isChecked }"> {{ todoList.name }} </span>
+        <button v-on:click="removeItem(index)" class="btn btn-outline-secondary btn-sm ml-5">
+          Delete
+        </button>
+      </li>
+    </ul>
+
+    <!-- <pre>{{ $data }}</pre> -->
+
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
